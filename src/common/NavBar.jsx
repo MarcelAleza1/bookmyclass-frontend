@@ -23,7 +23,7 @@ export const NavBar = () => {
                         </a>
                     </div>
                     <div>
-                        <a href="/login" class="inline-block text-sm px-4 py-2 leading-none border rounded border-black mt-4 lg:mt-0">Login</a>
+                        <a href="/login" class="inline-block text-sm px-4 py-2 mr-2 leading-none border rounded border-black mt-4 lg:mt-0">Login</a>
                         <a href="/register" class="inline-block text-sm px-4 py-2 leading-none border rounded border-black mt-4 lg:mt-0">Register</a>
                     </div>
                 </div>

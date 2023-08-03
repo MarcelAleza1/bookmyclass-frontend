@@ -4,7 +4,8 @@ export const Home = () => {
 
     return (
         <>
-            <Register />
+        Home
+            {/* <Register /> */}
         </>
     )
 }
