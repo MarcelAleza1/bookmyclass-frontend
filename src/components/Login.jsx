@@ -1,16 +1,30 @@
 import { useState } from 'react';
+import { Navigate } from "react-router-dom";
 import apiCalls from '../services/api.js';
 export const Login = () => {
   const [email, setEmail] = useState(null);
-  const [password, setPassword] = useState(null)
+  const [password, setPassword] = useState(null);
+  const [loginError, setLoginError] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [loggedId, setLoggedIn] = useState(false);
   const LoginApi = async () => {
     var serverResponse;
-    serverResponse=await apiCalls.loginUser(email, password)
+    setLoading(true);
+    serverResponse = await apiCalls.loginUser(email, password);
+    setLoading(false);
+    if (serverResponse.error) {
+      setLoginError(true);
+    } else {
+      setLoggedIn(true)
+    }
+    sessionStorage.setItem('token', serverResponse.token);
     console.log(serverResponse);
   }
+  console.log("loginError: ", loginError, "loading", loading);
   return <>
     <section className="w-full">
-      <div className="App mt-5">
+      {!loggedId ? <div className="App mt-5">
+        <p className='text-red-600'>{loginError ? <>Invalid Credentials Please try again</> : <></>}</p>
         <span className="mr-2">Email</span>
         <div className='input-container my-3 '>
 
@@ -20,7 +34,10 @@ export const Login = () => {
             placeholder='Email'
             className=' border-0 px-2'
             style={{ height: "50px", backgroundColor: "#F3F3F3" }}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => {
+              setEmail(e.target.value);
+              setLoginError(false);
+            }}
           >
           </input>
         </div>
@@ -33,7 +50,10 @@ export const Login = () => {
             placeholder='Password'
             className='w-100 border-0 px-2'
             style={{ height: "50px", backgroundColor: "#F3F3F3" }}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={(e) => {
+              setPassword(e.target.value);
+              setLoginError(false);
+            }}
           >
           </input>
 
@@ -44,7 +64,12 @@ export const Login = () => {
           style={{ height: "50px", backgroundColor: "#6237DE" }}
           onClick={() => { LoginApi() }}
         >Login</button>
-      </div>
+        <p>Don't have an account? Please <a href='/register' className='text-blue-600'>Register</a></p>
+      </div> :
+        <>
+        {  <Navigate to="/profile" replace={true} />}
+        </>}
+
     </section>
   </>
 }

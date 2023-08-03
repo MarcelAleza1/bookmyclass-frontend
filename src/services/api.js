@@ -58,7 +58,7 @@ const userProfile = async (token) => {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                token
+                "token":token,
             },
 
         });

@@ -1,7 +1,9 @@
 import { useFormik } from 'formik';
 import * as Yup from 'yup'
 import apiCalls from '../services/api.js';
+import { useState } from 'react';
 export const Register = () => {
+    const [isRegistered, setIsRegistered] = useState(true);
     const formik = useFormik(
         {
             initialValues: {
@@ -15,7 +17,7 @@ export const Register = () => {
                 firstName: Yup.string().max(15, "First Name Must be 25 characters or less")
                     .required("Required"),
                 lastName: Yup.string().max(15, "First Name Must be 25 characters or less")
-                    .required("Required"),
+                    .required("Last name Required"),
                 email: Yup.string().email("Invalid email").required("Required"),
                 password: Yup.string().min(8).required("require"),
                 confirmPassword: Yup.string()
@@ -26,13 +28,14 @@ export const Register = () => {
                 console.log("sign up details ", values);
                 let apiResponse;
                 apiResponse = await apiCalls.registerUser(values);
+                setIsRegistered(true)
                 console.log("console", apiResponse);
             }
         }
     );
     return (
         <div>
-            <form onSubmit={formik.handleSubmit}>
+            {!isRegistered ? <form onSubmit={formik.handleSubmit}>
                 <div className='App mt-2'>
                     <div className=' my-3' >
                         {formik.errors.firstName ? <p className='text-red-600 mb-2'>{formik.errors.firstName}</p> : null}
@@ -112,7 +115,14 @@ export const Register = () => {
                     >Create Account</button>
                 </div>
 
-            </form>
+            </form> :
+                <div className='mt-5'>
+                    <h2 className='flex items-center justify-center mx-auto text-green-600'>Registered Successfully</h2>
+                    <h3 className='mx-2'>You can take a look at how i call <a href='/joke' className='text-blue-600'>Joke Api</a> and <a href='/kitsu' className='text-blue-600'>Kitsu Api</a></h3>
+                 <h2 className='flex items-center justify-center mx-auto '>OR</h2>
+                 <h3 className='mx-2'>You can <a href='/login' className='text-blue-600'>Login</a> to see your profile</h3>
+                </div>
+                }
         </div>
     )
 }
