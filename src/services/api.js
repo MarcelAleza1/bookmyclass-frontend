@@ -45,7 +45,7 @@ const loginUser = async (email,password) => {
                 password,
             }),
         });
-        return response.json();
+        return response;
     } catch (e) {
         return e;
     }
@@ -55,10 +55,10 @@ const userProfile = async (token) => {
     let response;
     try {
         response = await fetch(`${base_url}api/profile`, {
-            method: "POST",
+            method: "GET",
             headers: {
                 "Content-Type": "application/json",
-                "token":token,
+                "token":token
             },
 
         });

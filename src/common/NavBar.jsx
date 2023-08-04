@@ -15,10 +15,10 @@ export const NavBar = () => {
                         <a href="#" class="block mt-4 lg:inline-block lg:mt-0  mr-4">
                             Home
                         </a>
-                        <a href="#" class="block mt-4 lg:inline-block lg:mt-0  mr-4">
+                        <a href="/joke" class="block mt-4 lg:inline-block lg:mt-0  mr-4">
                             Joke API
                         </a>
-                        <a href="#" class="block mt-4 lg:inline-block lg:mt-0 ">
+                        <a href="/kitsu" class="block mt-4 lg:inline-block lg:mt-0 ">
                         Kitsu API
                         </a>
                     </div>

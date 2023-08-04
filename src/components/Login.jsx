@@ -12,11 +12,16 @@ export const Login = () => {
     setLoading(true);
     serverResponse = await apiCalls.loginUser(email, password);
     setLoading(false);
-    if (serverResponse.error) {
-      setLoginError(true);
-    } else {
+      console.log("serverResponse: ",serverResponse);
+    if(serverResponse.status===200){
       setLoggedIn(true)
+    } else {
+      setLoginError(true);
     }
+    serverResponse = await serverResponse.json();
+    // if (serverResponse.error) {
+    //   setLoginError(true);
+    // } 
     sessionStorage.setItem('token', serverResponse.token);
     console.log(serverResponse);
   }
