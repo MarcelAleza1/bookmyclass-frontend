@@ -1,32 +1,39 @@
+import React, { useState } from 'react';
+import { Bars3BottomRightIcon, XMarkIcon } from '@heroicons/react/24/solid'
+
 export const NavBar = () => {
+    const Links = [
+        { name: "HOME", link: "/" },
+        { name: "JOKES", link: "/joke" },
+        { name: "KITSU", link: "/kitsu" }
+    ];
+    let [open, setOpen] = useState(false);
+
     return (
-        <div className="App">
-            <nav class="flex items-center justify-between flex-wrap bg-white text-black p-6 sticky top-0 shadow-lg mb-3">
-                <div class="flex items-center flex-shrink-0  mr-6">
-                    <span class="font-semibold text-xl tracking-tight">BookMyClass</span>
+        <div className='shadow-md w-full sticky top-0 left-0 mb-5'>
+            <div className='md:flex items-center justify-between bg-white py-4 md:px-10 px-7'>
+                <div className='font-bold text-2xl cursor-pointer flex items-center gap-1'>
+                    <span>BookMyClass</span>
                 </div>
-                <div class="block lg:hidden">
-                    <button class="flex items-center px-3 py-2 border rounded  border-teal-400 hover:text-white hover:border-white">
-                        <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" /></svg>
-                    </button>
+                <div onClick={() => setOpen(!open)} className='absolute right-8 top-6 cursor-pointer md:hidden w-7 h-7'>
+                    {
+                        open ? <XMarkIcon /> : <Bars3BottomRightIcon />
+                    }
                 </div>
-                <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
-                    <div class="text-sm lg:flex-grow">
-                        <a href="/home" class="block mt-4 lg:inline-block lg:mt-0  mr-4">
-                            Home
-                        </a>
-                        <a href="/joke" class="block mt-4 lg:inline-block lg:mt-0  mr-4">
-                            Joke API
-                        </a>
-                        <a href="/kitsu" class="block mt-4 lg:inline-block lg:mt-0 ">
-                        Kitsu API
-                        </a>
-                    </div>
+                <ul className={`md:flex md:items-center md:pb-0 pb-12 absolute md:static bg-white md:z-auto z-[-1] left-0 w-full md:w-auto md:pl-0 pl-9 transition-all duration-500 ease-in ${open ? 'top-12' : 'top-[-490px]'}`}>
+                    {
+                        Links.map((link) => (
+                            <li className='md:ml-8 md:my-0 my-7 font-semibold'>
+                                <a href={link.link} className='text-gray-800 hover:text-blue-400 duration-500'>{link.name}</a>
+                            </li>))
+                    }
                     <div>
-                        <a href="/login" class="inline-block text-sm px-4 py-2 mr-2 leading-none border rounded border-black mt-4 lg:mt-0">Login</a>
-                        <a href="/register" class="inline-block text-sm px-4 py-2 leading-none border rounded border-black mt-4 lg:mt-0">Register</a>
+                        <a href="/login" className="inline-block text-sm hover:text-blue-400 px-4 py-2 mr-2 md:ml-2 leading-none border rounded border-black mt-4 lg:mt-0">Login</a>
+                        <a href="/register" className="inline-block text-sm hover:text-blue-400 px-4 py-2 leading-none border rounded border-black mt-4 lg:mt-0">Register</a>
                     </div>
-                </div>
-            </nav>
-        </div>)
+                    <div className='border border-b md:hidden my-2 mr-2'></div>
+                </ul>
+            </div>
+        </div>
+    )
 }

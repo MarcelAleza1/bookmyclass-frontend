@@ -11,12 +11,14 @@ import { NavBar } from './common/NavBar';
 import { Profile } from './components/Profile';
 import { Joke } from './components/Joke';
 import { Kitsu } from './components/Kitsu';
+import Header from './common/Header';
 
 function App() {
   return (
     <div className="">
       <Router>
-        <NavBar />
+         <NavBar /> 
+        {/* <Header /> */}
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path='/register' element={<Register />} />

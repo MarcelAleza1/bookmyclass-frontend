@@ -22,7 +22,7 @@ console.log("running 1");
                 response = await response.json();
                console.log("response: ", response);
                 
-                setTrendingAnime([...response.data]);
+                setTrendingAnime([...response?.data]);
                 // console.log("running 2");
                 // console.log("igngggjmgg");
                 // console.log("trending: ",trendingAnime);

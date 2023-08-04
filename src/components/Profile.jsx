@@ -19,9 +19,9 @@ export const Profile = () => {
             }
             const profileInfo = await apiResponse.json();
             console.log(profileInfo.userProfile);
-            setFirstName(profileInfo.userProfile.firstName);
-            setLastName(profileInfo.userProfile.lastName);
-            setEmail(profileInfo.userProfile.email);
+            setFirstName(profileInfo?.userProfile.firstName);
+            setLastName(profileInfo?.userProfile.lastName);
+            setEmail(profileInfo?.userProfile.email);
             setLoading(false)
         };
 
