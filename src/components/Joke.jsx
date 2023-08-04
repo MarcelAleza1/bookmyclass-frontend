@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import { Loader } from "../common/Loader";
 
 export const Joke = () => {
     const [loading, setLoading] = useState(false);
@@ -14,7 +15,7 @@ export const Joke = () => {
                     method: "GET",
                 });
                 const jokes = await response.json();
-               // console.log(jokes);
+                // console.log(jokes);
                 setJokes([...jokes]);
                 setLoading(false);
             } catch (e) {
@@ -24,32 +25,34 @@ export const Joke = () => {
         jokeApiCall();
 
     }, []);
-console.log("Jokes: ",jokes);
+
+    if (loading) return <div className="flex itemx-center justify-center mt-5"> <Loader /></div>
     return (
-        <div className="grid grid-cols-1 md:grid-cols-2 mx-2">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4  mx-2">
             {
-                jokes.map((joke)=> {
+                jokes.map((joke, idx) => {
                     return (
-                        <div class="relative flex w-96 flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md mb-2">
-                        <div class="p-6">
-                        <h1 className="ml-auto text-green-600">Id: {joke.id}</h1>
-                            <h5 class="mb-2 block font-sans text-xl font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased">
+                        <div class="relative flex w-96 flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md mb-2" key={idx}>
+                            {/* <div className=""> */}
+                            <div class="pt-5 px-5 pb-2">
+                                {/* <h1 className="ml-auto text-green-600">Id: {joke.id}</h1> */}
+                                {/* <h5 class="mb-2 block text-xl font-semibold leading-snug tracking-normal text-blue-gray-900 ">
                                 Type: {joke.type.toUpperCase()}
-                            </h5>
-                            <p class="block font-sans text-base font-light leading-relaxed text-inherit antialiased">
+                            </h5> */}
+                                <p><span className="font-bold text-md"> Setup: </span> {joke.setup}</p>
+                                {/* <p class="inline-block bg-gray-200 rounded-lg px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2 ">
                                 Setup: {joke.setup}
-                            </p>
+                            </p> */}
+                            </div>
+                            <div className="px-5 pt-2 pb-5">
+                                <p><span className="font-bold text-md"> PuchLine: </span>  {joke.punchline}</p>
+                            </div>
+                            {/* </div> */}
+                            <div className="mt-auto">
+                            {joke.type ? <span className="mx-5 font-bold text-md mt-auto inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#{joke.type.toUpperCase()}</span> : <></>}
+                            </div>  
+                            
                         </div>
-                        <div class="p-6 pt-0">
-                            <button
-                                class="select-none rounded-lg bg-pink-500 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-pink-500/20 transition-all hover:shadow-lg hover:shadow-pink-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                                type="button"
-                                data-ripple-light="true"
-                            >
-                                PuchLine: {joke.punchline}
-                            </button>
-                        </div>
-                    </div> 
                     )
                 })
             }

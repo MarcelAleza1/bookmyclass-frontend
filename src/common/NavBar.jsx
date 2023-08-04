@@ -12,7 +12,7 @@ export const NavBar = () => {
                 </div>
                 <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
                     <div class="text-sm lg:flex-grow">
-                        <a href="#" class="block mt-4 lg:inline-block lg:mt-0  mr-4">
+                        <a href="/home" class="block mt-4 lg:inline-block lg:mt-0  mr-4">
                             Home
                         </a>
                         <a href="/joke" class="block mt-4 lg:inline-block lg:mt-0  mr-4">
