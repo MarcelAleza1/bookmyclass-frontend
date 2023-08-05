@@ -16,16 +16,16 @@ const registerUser = async (values) => {
                 password: values.password,
                 confirmpassword: values.confirmPassword,
             }),
-        })
-            ;
-        if (response.ok) {
-            response = response.json();
-            return response;
-            // window.location.href = local_url
-        }
-        else {
-            response = response.json();
-        }
+        })      ;
+        return response;
+        // if (response.ok) {
+        //     //response = response.json();
+        //     return response;
+        //     // window.location.href = local_url
+        // }
+        // else {
+        //     response = response.json();
+        // }
 
     } catch (e) {
         return e;

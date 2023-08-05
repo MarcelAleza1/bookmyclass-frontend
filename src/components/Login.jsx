@@ -1,20 +1,24 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { Navigate } from "react-router-dom";
 import apiCalls from '../services/api.js';
+import { LoginContext } from '../contexts/LoginContext.js';
+import { Loader } from '../common/Loader.jsx';
 export const Login = () => {
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
   const [loginError, setLoginError] = useState(false);
   const [loading, setLoading] = useState(false);
   const [loggedId, setLoggedIn] = useState(false);
+  const {isLoggedIn,setIsLoggedIn} = useContext(LoginContext);
   const LoginApi = async () => {
     var serverResponse;
     setLoading(true);
     serverResponse = await apiCalls.loginUser(email, password);
     setLoading(false);
-      console.log("serverResponse: ",serverResponse);
+      //console.log("serverResponse: ",serverResponse);
     if(serverResponse.status===200){
-      setLoggedIn(true)
+      setLoggedIn(true);
+      setIsLoggedIn(true)
     } else {
       setLoginError(true);
     }
@@ -65,10 +69,12 @@ export const Login = () => {
         </div>
 
         <button type='submit'
-          className='w-[200px] border-0 my-3 px-3 text-white'
-          style={{ height: "50px", backgroundColor: "#6237DE" }}
+          className={`w-[200px] border-0 my-3 px-3 text-white  h-[50px] ${loading? "bg-cyan-600": "bg-[#6237DE]"}`}
+          // style={{ height: "50px", backgroundColor: "#6237DE" }}
+          disabled={loading?true:false}
           onClick={() => { LoginApi() }}
         >Login</button>
+        {loading ?  <div className="flex itemx-center justify-center mt-5"> <Loader /></div>: <></>}
         <p>Don't have an account? Please <a href='/register' className='text-blue-600'>Register</a></p>
       </div> :
         <>

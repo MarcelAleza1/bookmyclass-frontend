@@ -11,6 +11,7 @@ import { NavBar } from './common/NavBar';
 import { Profile } from './components/Profile';
 import { Joke } from './components/Joke';
 import { Kitsu } from './components/Kitsu';
+import { Logout } from './common/Logout';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route path='/profile' element={<Profile />} />
           <Route path='/joke' element={<Joke />} />
           <Route path='/kitsu' element={<Kitsu />} />
+          <Route path='/logout' element={<Logout/>}/>
           <Route path='*' element={<Home />} />
         </Routes>
       </Router>
