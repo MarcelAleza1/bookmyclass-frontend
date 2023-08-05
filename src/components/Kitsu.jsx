@@ -7,7 +7,7 @@ export const Kitsu = () => {
     const [loading, setLoading] = useState(false);
     const [trendingAnime, setTrendingAnime] = useState([])
     useEffect(() => {
-        
+
         const kitsuCall = async () => {
             let response;
             try {
@@ -18,10 +18,10 @@ export const Kitsu = () => {
                     },
                     method: "GET",
                 });
-console.log("running 1");
+                console.log("running 1");
                 response = await response.json();
-               console.log("response: ", response);
-                
+                console.log("response: ", response);
+
                 setTrendingAnime([...response?.data]);
                 // console.log("running 2");
                 // console.log("igngggjmgg");
@@ -48,14 +48,14 @@ console.log("running 1");
                                 <div class="px-6 py-4">
                                     <div class="font-bold text-xl mb-2">{anime.attributes.canonicalTitle}</div>
                                     <p class="text-gray-700 text-base">
-                                    {anime.attributes.description.slice(0,200)} etc.
+                                        {anime.attributes.description.slice(0, 200)}
                                     </p>
                                 </div>
                                 <div class="px-6 pt-4 pb-2">
-                                    {anime.attributes.titles.en?  <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">{anime.attributes.titles.en}</span>:<></> }
-                                  {anime.attributes.titles.en_jp?<span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">{anime.attributes.titles.en_jp}</span>: <></> }
-                                   {anime.attributes.titles.ja_jp?  <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">{anime.attributes.titles.ja_jp}</span>: <></> } 
-                                   
+                                    {anime.attributes.titles.en ? <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">{anime.attributes.titles.en}</span> : <></>}
+                                    {anime.attributes.titles.en_jp ? <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">{anime.attributes.titles.en_jp}</span> : <></>}
+                                    {anime.attributes.titles.ja_jp ? <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">{anime.attributes.titles.ja_jp}</span> : <></>}
+
                                 </div>
                             </div>
                         )

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import apiCalls from '../services/api.js';
 import { Link } from 'react-router-dom';
 import { Loader } from '../common/Loader.jsx';
+import CreateClass from './CreateClass.jsx';
 export const Profile = () => {
     const token = sessionStorage.getItem("token");
     const [firstName, setFirstName] = useState(null);
@@ -31,10 +32,12 @@ export const Profile = () => {
         // setProfileError(true);
     }, [token]);
 
-    if (loading) return  <div className="flex itemx-center justify-center mt-5"> <Loader /></div>
+    if (loading) return <div className="flex itemx-center justify-center mt-5"> <Loader /></div>
     if (profileError) return <div className='mx-5'> Error while loading your profile, Please <Link className='text-blue-600' to={'/login'}>Login</Link> again</div>
-    return < div className="mt-5 mx-5">
-        <h1>Welcome to your profile</h1>
+    return(
+    < div className="mt-5 mx-5">
+        <CreateClass />
+        {/* <h1>Welcome to your profile</h1>
         <table class="table mt-2">
             <thead>
                 <tr className='border'>
@@ -50,7 +53,7 @@ export const Profile = () => {
                     <td className='border mr-2'>{email}</td>
                 </tr>
             </tbody>
-        </table>
-
+        </table> */}
     </div>
+    )
 }
