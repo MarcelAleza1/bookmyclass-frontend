@@ -1,70 +1,103 @@
-# Getting Started with Create React App
+# Class Booking Information Management System - Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is the frontend application for the Class Booking Information Management System. It provides a user interface to manage classes, users, and bookings for a class booking platform. The frontend is built using React.js and uses Tailwind CSS for styling.
 
-## Available Scripts
+## Table of Contents
 
-In the project directory, you can run:
+- [Getting Started](#getting-started)
+- [Prerequisites](#prerequisites)
+- [Installation](#installation)
+- [Project Structure](#project-structure)
+- [Features](#features)
+- [Dependencies](#dependencies)
+- [Contributing](#contributing)
+<!-- - [License](#license) -->
 
-### `npm start`
+## Getting Started
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+To get started with the frontend application, follow the installation instructions in the [Installation](#installation) section. After setting up the application, you can access the Class Booking Information Management System through the web interface.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Prerequisites
 
-### `npm test`
+Before running the frontend application, make sure you have the following installed on your system:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Node.js (v12 or higher)
 
-### `npm run build`
+## Installation
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. Clone the repository:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```bash
+git clone https://github.com/MarcelAleza1/bookmyclass-frontend.git
+cd bookmyclass-frontend
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+2. Install dependencies:
 
-### `npm run eject`
+```bash
+npm install
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+3. Start the development server:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```bash
+npm start
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+The application will run at http://localhost:3000.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Project Structure
 
-## Learn More
+The frontend project is organized as follows:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```
+- frontend
+  - public
+    - index.html
+    - ...
+  - src
+    - components
+    - services
+  - package.json
+  - ...
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- `public`: Contains the public assets and the `index.html` file.
+- `src`: Contains the application source code.
+<!-- - `assets`: Contains images, icons, and other static assets used in the application. -->
+- `components`: Contains reusable React components.
+<!-- - `pages`: Contains individual pages or screens of the application. -->
+- `services`: Contains service modules for handling API requests and data management.
 
-### Code Splitting
+## Features
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+The frontend application provides the following features:
 
-### Analyzing the Bundle Size
+- View all classes with their details, such as name, schedule, instructor, and available seats.
+- Create classes.
+- Register new users for the platform.
+- Login and authenticate users to access protected routes.
+- View user profile information.
+- Book classes and manage bookings.
+<!-- - Display alerts and notifications for user interactions. -->
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Dependencies
 
-### Making a Progressive Web App
+The frontend application uses the following major dependencies:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- React.js: A JavaScript library for building user interfaces.
+- React Router: For handling routing and navigation within the application.
+- Axios: For making API requests to the backend server.
+- Tailwind CSS: A utility-first CSS framework for styling the user interface.
 
-### Advanced Configuration
+## Contributing
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Contributions to this project are welcome. Feel free to open issues and submit pull requests.
 
-### Deployment
+<!-- ## License
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+This project is licensed under the [MIT License](LICENSE). -->
 
-### `npm run build` fails to minify
+## Author
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- [Mazi Essoloani Aleza](https://github.com/MarcelAleza1)
