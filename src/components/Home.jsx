@@ -1,23 +1,53 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Joke } from "./Joke"
 import { Kitsu } from "./Kitsu"
 import CreateClass from "./CreateClass";
 import { BookingClass, ClassInfo } from "./BookingClass";
+import { LoginContext } from '../contexts/LoginContext';
+import apiCalls from '../services/api.js';
 
 export const Home = () => {
     const [showAnime, setShowAnime] = useState(false)
+    const { isLoggedIn, setIsLoggedIn } = useContext(LoginContext);
+    const [loading, setLoading] = useState(false);
+    const [profileError, setProfileError] = useState(false);
+    const [userID,setUserID] = useState(null);
+
+    const token = sessionStorage.getItem("token");
 
     useEffect(() => {
-        setTimeout(() => { setShowAnime(true); }, 5000);
-    }, [showAnime]);
-    const [classes, setClasses] = useState([]);
-    const handleClassCreated = (newClass) => {
-        setClasses([...classes, newClass]);
-      };
+        const getProfile = async () => {
+            setLoading(true);
+            const apiResponse = await apiCalls.userProfile(token);
+            if (apiResponse.status === 200) {
+                setProfileError(false);
+            }
+            else {
+                setProfileError(true);
+                setIsLoggedIn(false);
+            }
+            const profileInfo = await apiResponse.json();
+            console.log("profileInfo: ",profileInfo);
+            setUserID(profileInfo?.userProfile?._id);
+            if (profileInfo?.userProfile?._id){
+                setIsLoggedIn(true);
+            }
+           
+            setLoading(false);
+            // setFirstName(profileInfo?.userProfile?.firstName);
+            // setLastName(profileInfo?.userProfile?.lastName);
+            // setEmail(profileInfo?.userProfile?.email);
+        };
+
+        getProfile();
+        // setProfileError(true);
+    }, [token]);
+
+
     return (
         <>
-        {/* <CreateClass onClassCreated={handleClassCreated} />  */}
-         <BookingClass />
+            {/* <CreateClass onClassCreated={handleClassCreated} />  */}
+            <BookingClass userID={userID}/>
             {/* <Joke />
             <div className="ml-3 mb-2">Displaying data from Kitsu API</div>
             {showAnime ? <Kitsu /> : null} */}

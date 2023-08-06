@@ -78,7 +78,7 @@ export const Login = () => {
         <p>Don't have an account? Please <a href='/register' className='text-blue-600'>Register</a></p>
       </div> :
         <>
-        {  <Navigate to="/profile" replace={true} />}
+        {  <Navigate to="/" replace={true} />}
         </>}
 
     </section>
