@@ -127,7 +127,7 @@ export const BookingClass = ({ userID }) => {
                                 <td className="mb-2 border-2 mr-2">
                                     {b.class.name}
                                 </td>
-                                <td className="mb-2 border-2 mr-2"> {b.bookingDate}</td>
+                                <td className="mb-2 border-2 mr-2"> {b.bookingDate.slice(0,10)}</td>
                                 <td className="mb-2 border-2 mr-2">
                                     {b.user.email}
                                 </td>
