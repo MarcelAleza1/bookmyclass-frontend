@@ -11,7 +11,8 @@ export const BookingClass = ({ userID }) => {
     const [selectedClass, setSelectedClass] = useState('');
     const { isLoggedIn, setIsLoggedIn } = useContext(LoginContext);
     const [warning, showWarning] = useState(false);
-    const [loading,setLoading]=useState(false);
+    const [loading, setLoading] = useState(false);
+    const [isClassSelected, setIsClassSelected] = useState(true);//by default assume class is selected
 
     console.log(" userId : ", userID);
 
@@ -50,6 +51,7 @@ export const BookingClass = ({ userID }) => {
             // return;
         }
         if (!selectedClass) {
+            setIsClassSelected(false);
             return;
         }
         console.log(userID);
@@ -65,6 +67,7 @@ export const BookingClass = ({ userID }) => {
                 fetchClasses();
                 fetchBookings();
                 setSelectedClass('');
+                setIsClassSelected(true);
             } catch (error) {
                 console.error('Error creating booking:', error);
             }
@@ -127,7 +130,7 @@ export const BookingClass = ({ userID }) => {
                                 <td className="mb-2 border-2 mr-2">
                                     {b.class.name}
                                 </td>
-                                <td className="mb-2 border-2 mr-2"> {b.bookingDate.slice(0,10)}</td>
+                                <td className="mb-2 border-2 mr-2"> {b.bookingDate.slice(0, 10)}</td>
                                 <td className="mb-2 border-2 mr-2">
                                     {b.user.email}
                                 </td>
@@ -145,7 +148,10 @@ export const BookingClass = ({ userID }) => {
                         id="classSelect"
                         className="block w-full p-2 border border-gray-300 rounded "
                         value={selectedClass}
-                        onChange={(e) => setSelectedClass(e.target.value)}
+                        onChange={(e) => {
+                            setSelectedClass(e.target.value);
+                            setIsClassSelected(true);
+                        }}
                     >
                         <option value="">Select a class</option>
                         {classes.map((c) => (
@@ -164,10 +170,13 @@ export const BookingClass = ({ userID }) => {
                         Book Class
                     </button>
                     {warning ? <>
-                        <button className="bg-red-400 text-white text-center px-2 mt-5 flex items-center" onClick={() => { showWarning(false) }}>
+                        <button className="bg-red-400 text-white text-center px-2 mt-5 flex items-center mr-2" onClick={() => { showWarning(false) }}>
                             <Link to={"/login"} className="font-bold">Please Login to book a class</Link>
                         </button>
                     </> : null}
+                    {!isClassSelected ? <div className="bg-red-400 text-white text-center px-2 mt-5 flex items-center" onClick={() => { showWarning(false) }}>
+                        Please select the class and proceed.
+                    </div> : null}
                 </div>
 
             </div>

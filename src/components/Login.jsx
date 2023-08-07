@@ -26,7 +26,7 @@ export const Login = () => {
     // if (serverResponse.error) {
     //   setLoginError(true);
     // } 
-    sessionStorage.setItem('token', serverResponse.token);
+    localStorage.setItem('token', serverResponse.token);
     console.log(serverResponse);
   }
   console.log("loginError: ", loginError, "loading", loading);

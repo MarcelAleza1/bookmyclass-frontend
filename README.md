@@ -1,7 +1,7 @@
 # Class Booking Information Management System - Frontend
 
 This is the frontend application for the Class Booking Information Management System. It provides a user interface to manage classes, users, and bookings for a class booking platform. The frontend is built using React.js and uses Tailwind CSS for styling.
-Find the live site on: Find the live website here: https://bookthisclaa.netlify.app
+Find the live site on: https://bookthisclaa.netlify.app
 ## Table of Contents
 
 - [Getting Started](#getting-started)

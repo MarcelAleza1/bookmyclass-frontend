@@ -11,9 +11,9 @@ export const Home = () => {
     const { isLoggedIn, setIsLoggedIn } = useContext(LoginContext);
     const [loading, setLoading] = useState(false);
     const [profileError, setProfileError] = useState(false);
-    const [userID,setUserID] = useState(null);
+    const [userID, setUserID] = useState(null);
 
-    const token = sessionStorage.getItem("token");
+    const token = localStorage.getItem("token");
 
     useEffect(() => {
         const getProfile = async () => {
@@ -27,12 +27,12 @@ export const Home = () => {
                 setIsLoggedIn(false);
             }
             const profileInfo = await apiResponse.json();
-            console.log("profileInfo: ",profileInfo);
+            console.log("profileInfo: ", profileInfo);
             setUserID(profileInfo?.userProfile?._id);
-            if (profileInfo?.userProfile?._id){
+            if (profileInfo?.userProfile?._id) {
                 setIsLoggedIn(true);
             }
-           
+
             setLoading(false);
             // setFirstName(profileInfo?.userProfile?.firstName);
             // setLastName(profileInfo?.userProfile?.lastName);
@@ -46,12 +46,7 @@ export const Home = () => {
 
     return (
         <>
-            {/* <CreateClass onClassCreated={handleClassCreated} />  */}
-            <BookingClass userID={userID}/>
-            {/* <Joke />
-            <div className="ml-3 mb-2">Displaying data from Kitsu API</div>
-            {showAnime ? <Kitsu /> : null} */}
-
+            <BookingClass userID={userID} />
         </>
     )
 }

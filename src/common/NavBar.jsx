@@ -31,7 +31,7 @@ export const NavBar = () => {
                             </li>))
                     }
                     {isLoggedIn ? <div>
-                        <Link to={"/profile"} className='inline-block text-sm hover:text-blue-400 px-4 py-2 leading-none border rounded border-black mt-4 lg:mt-0'>Profile</Link>
+                        <Link to={"/profile"} className='ml-2 inline-block text-sm hover:text-blue-400 px-4 py-2 leading-none border rounded border-black mt-4 lg:mt-0'>Profile</Link>
                         <Link to={"/logout"} className="inline-block text-sm hover:text-blue-400 px-4 py-2 mr-2 md:ml-2 leading-none border rounded border-black mt-4 lg:mt-0">Logout</Link>
                     </div> :
                         <div>

@@ -4,7 +4,7 @@ import { LoginContext } from "../contexts/LoginContext";
 export const Logout = () => {
     const { isLoggedIn, setIsLoggedIn } = useContext(LoginContext);
     useEffect(() => {
-        sessionStorage.removeItem('token');
+        localStorage.removeItem('token');
         setIsLoggedIn(false);
     }, []);
 

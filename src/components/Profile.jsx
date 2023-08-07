@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { Loader } from '../common/Loader.jsx';
 import CreateClass from './CreateClass.jsx';
 export const Profile = () => {
-    const token = sessionStorage.getItem("token");
+    const token = localStorage.getItem("token");
     const [firstName, setFirstName] = useState(null);
     const [lastName, setLastName] = useState(null);
     const [email, setEmail] = useState(null);
