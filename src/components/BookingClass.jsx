@@ -174,11 +174,10 @@ export const BookingClass = ({ userID }) => {
                             <Link to={"/login"} className="font-bold">Please Login to book a class</Link>
                         </button>
                     </> : null}
-                    {!isClassSelected ? <div className="bg-red-400 text-white text-center px-2 mt-5 flex items-center" onClick={() => { showWarning(false) }}>
+                </div>
+                {!isClassSelected ? <div className="bg-red-400 text-white text-center px-2 mt-5 flex items-center w-[285px]" onClick={() => { showWarning(false) }}>
                         Please select the class and proceed.
                     </div> : null}
-                </div>
-
             </div>
         </div>
     );

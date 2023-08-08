@@ -1,7 +1,8 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Bars3BottomRightIcon, XMarkIcon } from '@heroicons/react/24/solid'
 import { LoginContext } from '../contexts/LoginContext';
 import { Link } from 'react-router-dom';
+import apiCalls from '../services/api.js';
 
 export const NavBar = () => {
     const { isLoggedIn, setIsLoggedIn } = useContext(LoginContext);
@@ -11,6 +12,24 @@ export const NavBar = () => {
         { name: "KITSU", link: "/kitsu" }
     ];
     let [open, setOpen] = useState(false);
+
+    const token = localStorage.getItem("token");
+
+    useEffect(() => {
+        const getProfile = async () => {
+            const apiResponse = await apiCalls.userProfile(token);
+            if (apiResponse.status === 200) {
+                setIsLoggedIn(true)
+            }
+            else {
+                setIsLoggedIn(false);
+            }
+        };
+
+        getProfile();
+
+    }, [token]);
+
 
     return (
         <div className='shadow-md w-full sticky top-0 left-0 mb-5 '>
@@ -32,7 +51,7 @@ export const NavBar = () => {
                     }
                     {isLoggedIn ? <div>
                         <Link to={"/profile"} className='ml-2 inline-block text-sm hover:text-blue-400 px-4 py-2 leading-none border rounded border-black mt-4 lg:mt-0'>Profile</Link>
-                        <Link to={"/logout"} className="inline-block text-sm hover:text-blue-400 px-4 py-2 mr-2 md:ml-2 leading-none border rounded border-black mt-4 lg:mt-0">Logout</Link>
+                        <Link to={"/logout"} className="ml-1 inline-block text-sm hover:text-blue-400 px-4 py-2 mr-2 md:ml-2 leading-none border rounded border-black mt-4 lg:mt-0">Logout</Link>
                     </div> :
                         <div>
                             <Link to={"/login"} className="inline-block text-sm hover:text-blue-400 px-4 py-2 mr-2 md:ml-2 leading-none border rounded border-black mt-4 lg:mt-0">Login</Link>

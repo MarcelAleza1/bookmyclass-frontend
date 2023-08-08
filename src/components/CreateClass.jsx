@@ -13,7 +13,8 @@ const CreateClass = ({ onClassCreated }) => {
 
     const [classCreated, setClassCreated] = useState(false);
     const [classes, setClasses] = useState([]);
-    const [loading,setLoading] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const [fieldError, setFieldError] = useState(false);
 
     const handleCreateClass = async () => {
         try {
@@ -33,8 +34,11 @@ const CreateClass = ({ onClassCreated }) => {
             setSchedule('');
             setInstructor('');
             setAvailableSeats('');
+            setFieldError(false);
         } catch (error) {
             console.error('Error creating class:', error);
+            setLoading(false);
+            setFieldError(true);
         }
     };
 
@@ -56,7 +60,7 @@ const CreateClass = ({ onClassCreated }) => {
                     <h1 className="text-3xl font-bold mb-4">Create Class</h1>
                     <div className="mb-4 max-w-md">
                         <label htmlFor="name" className="block font-bold mb-2">
-                        Class Name:
+                            Class Name:
                         </label>
                         <input
                             type="text"
@@ -117,11 +121,12 @@ const CreateClass = ({ onClassCreated }) => {
                     <button
                         className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded"
                         onClick={handleCreateClass}
-                        disabled={loading?true:false}
+                        disabled={loading ? true : false}
                     >
                         Create Class
                     </button>
-                    {loading ? <div className="flex itemx-center justify-center mt-5"> <Loader /></div>: null}
+                    {fieldError ? <p className='text-red-600'>Please all fill all the fields of the above form</p> : null}
+                    {loading ? <div className="flex itemx-center justify-center mt-5"> <Loader /></div> : null}
                 </>}
         </div>
     );
